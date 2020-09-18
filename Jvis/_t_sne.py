@@ -1407,7 +1407,7 @@ class JTSNE(JTSNEBASE):
         -------
         X_new: 
         """
-        print("JVis version 0.05")
+        #print("JVis version 0.05")
         if method == 'uniform':
             alpha = [1/len(X)]*len(X)
             embedding = self._fit(X, alpha)

@@ -2063,7 +2063,7 @@ class UMAP(BaseEstimator):
         X_new : array, shape (n_samples, n_components)
             Embedding of the training data in low-dimensional space.
         """
-        print("My name is Hoan")
+        #print("My name is Hoan")
         self.fit(X, X2, alpha, y)
         return self.embedding_
 
@@ -3242,7 +3242,7 @@ class JUMAPBASE(BaseEstimator):
         if self.metric == "precomputed" and self._sparse_data:
             print("Not implemented")
         elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
-            print("Always use exact mode: JUMAP")
+            #print("Always use exact mode: JUMAP")
             self._small_data = True
             self.graph_vec = [None]*len(jointX)
             self.sigma_vec = [None]*len(jointX)

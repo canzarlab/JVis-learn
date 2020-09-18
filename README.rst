@@ -68,13 +68,6 @@ the dependencies manually using anaconda followed by pulling umap from pip:
     conda install numba
     pip install testJvis-learn
 
-
-We also highly recommend installing the package via Conda:
-
-.. code:: bash
-
-    conda install -c conda-forge testJvis-learn
-
 ---------------
 How to use Jvis
 ---------------
