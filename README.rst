@@ -1,19 +1,3 @@
-.. image:: https://img.shields.io/pypi/v/testJvis-learn.svg
-    :target: https://pypi.python.org/pypi/testJvis-learn/
-    :alt: PyPI Version
-.. image:: https://anaconda.org/conda-forge/umap-learn/badges/version.svg
-    :target: https://anaconda.org/conda-forge/testJvis-learn
-    :alt: Conda-forge Version
-.. image:: https://anaconda.org/conda-forge/umap-learn/badges/downloads.svg
-    :target: https://anaconda.org/conda-forge/testJvis-learn
-    :alt: Downloads from conda-forge
-.. image:: https://img.shields.io/pypi/l/testJvis-learn.svg
-    :target: https://github.com/lmcinnes/umap/blob/master/LICENSE.txt
-    :alt: License
-.. image:: http://joss.theoj.org/papers/10.21105/joss.00861/status.svg
-    :target: xxx_paper_link
-    :alt: JOSS article for this repository
-
 ====
 Jvis
 ====
