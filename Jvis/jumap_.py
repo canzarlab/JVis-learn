@@ -1737,7 +1737,7 @@ class UMAP(BaseEstimator):
         # Handle small cases efficiently by computing all distances
         # elif X[index].shape[0] < 4096 and not self.force_approximation_algorithm:
         elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
-            print("Always use exact mode")
+            # print("Always use exact mode")
             self._small_data = True
             try:
                 # sklearn pairwise_distances fails for callable metric on sparse data
