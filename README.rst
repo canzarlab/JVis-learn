@@ -82,7 +82,7 @@ An example of making use of these options:
                             metric='correlation').fit_transform(data)
 
 For more realistic examples and Python scripts to reproduce the results
-in our paper are available at GitHub: xxx
+in our paper are available at GitHub: https://github.com/canzarlab/JVis_paper
 
 Tunning parameters of t-SNE and UMAP can be found here:
 https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
