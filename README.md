@@ -1,8 +1,4 @@
-
-
-====
-Jvis
-====
+# Jvis
 
 Emerging single-cell genomics technologies profile multiple types of molecules
 within a single cell. A fundamental step in the analysis of the produced high
