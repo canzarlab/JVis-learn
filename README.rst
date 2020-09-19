@@ -42,7 +42,7 @@ PyPI install, presuming you have numba and sklearn and all its requirements
 
 .. code:: bash
 
-    pip install testJvis-learn
+    pip install Jvis-learn
 
 If you have a problem with pip installation then we'd suggest installing
 the dependencies manually using anaconda followed by pulling umap from pip:
@@ -52,7 +52,7 @@ the dependencies manually using anaconda followed by pulling umap from pip:
     conda install numpy scipy
     conda install scikit-learn
     conda install numba
-    pip install testJvis-learn
+    pip install Jvis-learn
 
 ---------------
 How to use Jvis

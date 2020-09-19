@@ -14,8 +14,8 @@ def readme():
 
 
 configuration = {
-    "name": "testJvis-learn",
-    "version": "0.0.6",
+    "name": "Jvis-learn",
+    "version": "0.0.2",
     "description": "A generalization of tSNE and UMAP to single cell multimodal data",
     "long_description": readme(),
     "long_description_content_type": "text/x-rst",
@@ -37,7 +37,7 @@ configuration = {
         "Programming Language :: Python :: 3.8",
     ],
     "keywords": "dimension reduction t-sne umap manifold multimodal data",
-    "url": "http://github.com/xxx",
+    "url": "https://github.com/canzarlab/Jvis-learn",
     "maintainer": "Van Hoan Do",
     "maintainer_email": "vanhoan310@gmail.com",
     "license": "BSD",
