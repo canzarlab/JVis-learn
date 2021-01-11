@@ -16,10 +16,10 @@ Jvis produced a unified embedding that better agrees with known cell states and 
 and protein velocity landscapes compared to unimodal representations.
 
 The details for the underlying mathematics can be found in
-insert link here.
+https://www.biorxiv.org/content/10.1101/2021.01.10.426098v1.
 
 Van Hoan Do, Stefan Canzar, A generalization of tSNE and UMAP to single cell multimodal
-data, xxx.
+data, bioRxiv (2021). doi: https://doi.org/10.1101/2021.01.10.426098
 
 
 ----------
