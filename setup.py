@@ -15,8 +15,8 @@ def readme():
 
 configuration = {
     "name": "Jvis-learn",
-    "version": "0.0.3",
-    "description": "A generalization of tSNE and UMAP to single cell multimodal data",
+    "version": "0.0.4",
+    "description": "A generalization of t-SNE and UMAP to single-cell multimodal omics",
     "long_description": readme(),
     "long_description_content_type": "text/x-rst",
     "classifiers": [

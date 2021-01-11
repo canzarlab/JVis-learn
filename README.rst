@@ -87,7 +87,7 @@ License
 
 The JVis package is 3-clause BSD licensed.
 
-Note that the Jvis package is inherited from scikit-learn and UMAP
+Jvis package is inherited from scikit-learn and UMAP
 package under 3-clause BSD license.
 
 
