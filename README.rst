@@ -4,16 +4,7 @@
 Jvis
 ====
 
-Emerging single-cell genomics technologies profile multiple types of molecules
-within a single cell. A fundamental step in the analysis of the produced high
-dimensional data is their visualization using dimensionality reduction techniques
-such as t-SNE and UMAP. We developed Jvis, a dimensionality reduction framework
-that naturally generalizes t-SNE and UMAP to the joint visualization of
-multimodal omics data. Our approach  automatically learns a weighting of individual
-modalities from the data that promotes discriminative features but suppresses
-random noise. On 8 single-cell multimodal data sets across 5 different technologies,
-Jvis produced a unified embedding that better agrees with known cell states and RNA
-and protein velocity landscapes compared to unimodal representations.
+Emerging single-cell technologies profile multiple types of molecules within individual cells. A fundamental step in the analysis of the produced high-dimensional data is their visualization using dimensionality reduction techniques such as t-SNE and UMAP. We introduce j-SNE and j-UMAP as their natural generalizations to the joint visualization of multimodal omics data. Our approach automatically learns the relative contribution of each modality to a concise representation of cellular identity that promotes discriminative features but suppresses noise. On eight datasets, j-SNE and j-UMAP produce unified embeddings that better agree with known cell types and that harmonize RNA and protein velocity landscapes. j-SNE and j-UMAP are available in the JVis Python package.
 
 The details for the underlying mathematics can be found in
 https://www.biorxiv.org/content/10.1101/2021.01.10.426098v1.
