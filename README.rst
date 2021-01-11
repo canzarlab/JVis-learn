@@ -18,8 +18,8 @@ and protein velocity landscapes compared to unimodal representations.
 The details for the underlying mathematics can be found in
 https://www.biorxiv.org/content/10.1101/2021.01.10.426098v1.
 
-Van Hoan Do, Stefan Canzar, A generalization of tSNE and UMAP to single cell multimodal
-data, bioRxiv (2021). doi: https://doi.org/10.1101/2021.01.10.426098
+Van Hoan Do, Stefan Canzar, A generalization of t-SNE and UMAP to single-cell multimodal omics, 
+bioRxiv (2021). doi: https://doi.org/10.1101/2021.01.10.426098
 
 
 ----------
