@@ -3241,8 +3241,9 @@ class JUMAPBASE(BaseEstimator):
 
         if self.metric == "precomputed" and self._sparse_data:
             print("Not implemented")
-        elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
-            #print("Always use exact mode: JUMAP")
+        # elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
+        elif X[index].shape[0] < 3096 and not self.force_approximation_algorithm: ## My code
+            # print("Exact mode: JUMAP")
             self._small_data = True
             self.graph_vec = [None]*len(jointX)
             self.sigma_vec = [None]*len(jointX)
@@ -3291,13 +3292,18 @@ class JUMAPBASE(BaseEstimator):
                     self.verbose,
                     )
             
-            self.graph_ = alpha[0] * self.graph_vec[0]
-            self._sigmas = np.average(np.array(self.sigma_vec))
-            self._rhos = np.average(np.array(self.rho_vec))
+            self.graph_  = alpha[0] * self.graph_vec[0]
+            self._sigmas = alpha[0] * self.sigma_vec[0]
+            self._rhos   = alpha[0] * self.rho_vec[0]
+            # self._sigmas = np.average(np.array(self.sigma_vec))
+            # self._rhos = np.average(np.array(self.rho_vec))
             for it in range(1, len(jointX)):
                 self.graph_ += alpha[it] * self.graph_vec[it]
+                self._sigmas += alpha[it] * self.sigma_vec[it]
+                self._rhos  += alpha[it] * self.rho_vec[it]
 
         else:
+            # print("Approx case")
             # Standard case
             self._small_data = False
             # pass string identifier if pynndescent also defines distance metric
@@ -3310,70 +3316,86 @@ class JUMAPBASE(BaseEstimator):
                     nn_metric = self._input_distance_func
             else:
                 nn_metric = self._input_distance_func
-            (self._knn_indices, self._knn_dists, self._rp_forest) = nearest_neighbors(
-                X[index],
-                self._n_neighbors,
-                nn_metric,
-                self._metric_kwds,
-                self.angular_rp_forest,
-                random_state,
-                self.low_memory,
-                use_pynndescent=True,
-                verbose=self.verbose,
-            )
 
-            self.graph_, self._sigmas, self._rhos = fuzzy_simplicial_set(
-                X[index],
-                self.n_neighbors,
-                random_state,
-                nn_metric,
-                self._metric_kwds,
-                self._knn_indices,
-                self._knn_dists,
-                self.angular_rp_forest,
-                self.set_op_mix_ratio,
-                self.local_connectivity,
-                True,
-                self.verbose,
-            )
+            self.graph_vec = [None]*len(jointX)
+            self.sigma_vec = [None]*len(jointX)
+            self.rho_vec = [None]*len(jointX)
+
+            for idx, key in enumerate(jointX):
+                (self._knn_indices, self._knn_dists, self._rp_forest) = nearest_neighbors(
+                    jointX[key][index],
+                    self._n_neighbors,
+                    nn_metric,
+                    self._metric_kwds,
+                    self.angular_rp_forest,
+                    random_state,
+                    self.low_memory,
+                    use_pynndescent=True,
+                    verbose=self.verbose,
+                )
+
+                self.graph_vec[idx], self.sigma_vec[idx], self.rho_vec[idx] = fuzzy_simplicial_set(
+                    jointX[key][index],
+                    self.n_neighbors,
+                    random_state,
+                    nn_metric,
+                    self._metric_kwds,
+                    self._knn_indices,
+                    self._knn_dists,
+                    self.angular_rp_forest,
+                    self.set_op_mix_ratio,
+                    self.local_connectivity,
+                    True,
+                    self.verbose,
+                )
+            self.graph_  = alpha[0] * self.graph_vec[0]
+            self._sigmas = alpha[0] * self.sigma_vec[0]
+            self._rhos   = alpha[0] * self.rho_vec[0]
+            # self._sigmas = np.average(np.array(self.sigma_vec))
+            # self._rhos = np.average(np.array(self.rho_vec))
+            for it in range(1, len(jointX)):
+                self.graph_ += alpha[it] * self.graph_vec[it]
+                self._sigmas += alpha[it] * self.sigma_vec[it]
+                self._rhos  += alpha[it] * self.rho_vec[it]
 
             if not _HAVE_PYNNDESCENT:
-                self._search_graph = scipy.sparse.lil_matrix(
-                    (X[index].shape[0], X[index].shape[0]), dtype=np.int8
-                )
-                _rows = []
-                _data = []
-                for i in self._knn_indices:
-                    _non_neg = i[i >= 0]
-                    _rows.append(_non_neg.tolist())
-                    _data.append(np.ones(_non_neg.shape[0], dtype=np.int8).tolist())
-
-                self._search_graph.rows = np.empty(len(_rows), dtype=object)
-                self._search_graph.rows[:] = _rows
-                self._search_graph.data = np.empty(len(_data), dtype=object)
-                self._search_graph.data[:] = _data
-                self._search_graph = self._search_graph.maximum(
-                    self._search_graph.transpose()
-                ).tocsr()
-
-                if (self.metric != "precomputed") and (len(self._metric_kwds) > 0):
-                    # Create a partial function for distances with arguments
-                    _distance_func = self._input_distance_func
-                    _dist_args = tuple(self._metric_kwds.values())
-                    if self._sparse_data:
-
-                        @numba.njit()
-                        def _partial_dist_func(ind1, data1, ind2, data2):
-                            return _distance_func(ind1, data1, ind2, data2, *_dist_args)
-
-                        self._input_distance_func = _partial_dist_func
-                    else:
-
-                        @numba.njit()
-                        def _partial_dist_func(x, y):
-                            return _distance_func(x, y, *_dist_args)
-
-                        self._input_distance_func = _partial_dist_func
+                print ("Not implemented")
+                # self._search_graph = scipy.sparse.lil_matrix(
+                #     (X[index].shape[0], X[index].shape[0]), dtype=np.int8
+                # )
+                # _rows = []
+                # _data = []
+                # for i in self._knn_indices:
+                #     _non_neg = i[i >= 0]
+                #     _rows.append(_non_neg.tolist())
+                #     _data.append(np.ones(_non_neg.shape[0], dtype=np.int8).tolist())
+                #
+                # self._search_graph.rows = np.empty(len(_rows), dtype=object)
+                # self._search_graph.rows[:] = _rows
+                # self._search_graph.data = np.empty(len(_data), dtype=object)
+                # self._search_graph.data[:] = _data
+                # self._search_graph = self._search_graph.maximum(
+                #     self._search_graph.transpose()
+                # ).tocsr()
+                #
+                # if (self.metric != "precomputed") and (len(self._metric_kwds) > 0):
+                #     # Create a partial function for distances with arguments
+                #     _distance_func = self._input_distance_func
+                #     _dist_args = tuple(self._metric_kwds.values())
+                #     if self._sparse_data:
+                #
+                #         @numba.njit()
+                #         def _partial_dist_func(ind1, data1, ind2, data2):
+                #             return _distance_func(ind1, data1, ind2, data2, *_dist_args)
+                #
+                #         self._input_distance_func = _partial_dist_func
+                #     else:
+                #
+                #         @numba.njit()
+                #         def _partial_dist_func(x, y):
+                #             return _distance_func(x, y, *_dist_args)
+                #
+                #         self._input_distance_func = _partial_dist_func
 
         # Currently not checking if any duplicate points have differing labels
         # Might be worth throwing a warning...
