@@ -1448,9 +1448,6 @@ class JTSNE(JTSNEBASE):
                 alpha = alpha/np.sum(alpha)
                 alpha_np = np.array(alpha)
                 self.obj_value = np.inner(entropies, alpha_np) + _lambda * np.inner(alpha_np, np.log(alpha_np))
-                print("obj = ", self.obj_value)
-                print("n_iter = ", self.n_iter_)
-                print(alpha)
             self.alpha = alpha
             self.embedding_ = embedding 
             return self.embedding_
