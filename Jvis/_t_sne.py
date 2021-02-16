@@ -1279,10 +1279,12 @@ class JTSNEBASE(BaseEstimator):
                           neighbors=neighbors_nn,
                           skip_num_points=skip_num_points)
 
+        # start = time()
         self.cross_entropy = [None]*len(X)
         for it in range(len(X)):
             self.cross_entropy[it], grad =  _kl_divergence_bh(res, Pvec[it], degrees_of_freedom, n_samples, self.n_components,
                       angle=self.angle, skip_num_points=0, verbose=False, compute_error=True, num_threads=1)
+        # print("Time for computing entropy: ", time() - start)
         return res
 
     def _tsne(self, P, degrees_of_freedom, n_samples, X_embedded,
@@ -1408,20 +1410,47 @@ class JTSNE(JTSNEBASE):
         X_new: 
         """
         #print("JVis version 0.05")
+        self.obj_value = 0 # store objective value
         if method == 'uniform':
             alpha = [1/len(X)]*len(X)
             embedding = self._fit(X, alpha)
             self.embedding_ = embedding 
             self.alpha = np.array(alpha)
             return self.embedding_ 
-        else:
+        elif method == "random-restart":
             alpha = [1/len(X)]*len(X)
             # weight = np.array([0]*len(X))
             for it in range(max_iter):
                 embedding = self._fit(X, alpha)
                 entropies = np.array(self.cross_entropy)
+                alpha_np = np.array(alpha)
+                self.obj_value = np.inner(entropies, alpha_np) + _lambda * np.inner(alpha_np, np.log(alpha_np))
+                print("obj1 = ", self.obj_value)
                 alpha = np.exp(-entropies/_lambda - 1)
                 alpha = alpha/np.sum(alpha)
+                self.obj_value = np.inner(entropies, alpha_np) + _lambda * np.inner(alpha_np, np.log(alpha_np))
+                print("obj2 = ", self.obj_value)
+                print(alpha)
+            self.alpha = alpha
+            self.embedding_ = embedding 
+            return self.embedding_
+        else:
+            alpha = [1/len(X)]*len(X)
+            self.init = self._fit(X, alpha)
+            # weight = np.array([0]*len(X))
+            for it in range(max_iter):
+                # start_ = time()
+                embedding = self._fit(X, alpha)
+                # print("Total time = ", time() - start_)
+                entropies = np.array(self.cross_entropy)
+                self.init = embedding
+                alpha = np.exp(-entropies/_lambda - 1)
+                alpha = alpha/np.sum(alpha)
+                alpha_np = np.array(alpha)
+                self.obj_value = np.inner(entropies, alpha_np) + _lambda * np.inner(alpha_np, np.log(alpha_np))
+                print("obj = ", self.obj_value)
+                print("n_iter = ", self.n_iter_)
+                print(alpha)
             self.alpha = alpha
             self.embedding_ = embedding 
             return self.embedding_

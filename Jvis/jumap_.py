@@ -3477,16 +3477,22 @@ class JUMAP(JUMAPBASE):
             return self.embedding_ 
         else:
             for it in range(max_iter):
+                # start = time.time()
                 self.fit(X, alpha)
+                # print("Fit time: ", time.time() - start)
+                # start = time.time()
                 Q = self.prob_low_dim(self.embedding_, self._a, self._b)
+                # print("Q time: ", time.time() - start)
                 # n_samples = Q.shape[0]
+                # start = time.time()
                 obj_vec = np.array([self.CE(self.graph_vec[i].toarray(), Q) for i in range(len(X))])
-                # print(obj_vec)
+                # print("Ob time: ", time.time() - start)
                 if it == 0:
                     scaleOBJ = 0.1*np.max(obj_vec) # use this to scale the objective function
                 obj_vec = obj_vec/(0.001+ scaleOBJ)
                 alpha = np.exp(-obj_vec/ld - 1)
                 alpha = alpha/np.sum(alpha)
+                self.init = self.embedding_
                 # print(alpha)
             self.alpha = alpha
             return self.embedding_ 
