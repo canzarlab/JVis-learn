@@ -40,7 +40,7 @@ the dependencies manually using anaconda followed by pulling umap from pip:
 .. code:: bash
 
     conda install numpy scipy
-    conda install scikit-learn
+    conda install scikit-learn==0.24.1
     conda install numba
     pip install Jvis-learn
 
