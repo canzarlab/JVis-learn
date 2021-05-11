@@ -1783,7 +1783,7 @@ class UMAP(BaseEstimator):
 
             ## Compute for second modality
             if alpha < 0.99:
-                print("Compute jointUMAP")
+                # print("Compute jointUMAP")
                 try:
                     # sklearn pairwise_distances fails for callable metric on sparse data
                     _m2 = self.metric if self._sparse_data else self._input_distance_func
@@ -3243,7 +3243,7 @@ class JUMAPBASE(BaseEstimator):
             print("Not implemented")
         # elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
         elif X[index].shape[0] < 13096 and not self.force_approximation_algorithm: ## My code
-            print("Exact mode: JUMAP")
+            # print("Exact mode: JUMAP")
             self._small_data = True
             self.graph_vec = [None]*len(jointX)
             self.sigma_vec = [None]*len(jointX)
