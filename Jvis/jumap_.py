@@ -3242,8 +3242,8 @@ class JUMAPBASE(BaseEstimator):
         if self.metric == "precomputed" and self._sparse_data:
             print("Not implemented")
         # elif X[index].shape[0] < 14096 and not self.force_approximation_algorithm: ## My code
-        elif X[index].shape[0] < 3096 and not self.force_approximation_algorithm: ## My code
-            # print("Exact mode: JUMAP")
+        elif X[index].shape[0] < 13096 and not self.force_approximation_algorithm: ## My code
+            print("Exact mode: JUMAP")
             self._small_data = True
             self.graph_vec = [None]*len(jointX)
             self.sigma_vec = [None]*len(jointX)
@@ -3359,7 +3359,7 @@ class JUMAPBASE(BaseEstimator):
                 self._rhos  += alpha[it] * self.rho_vec[it]
 
             if not _HAVE_PYNNDESCENT:
-                print ("Not implemented")
+                print ("Not implemented, need to install Pynndescent")
                 # self._search_graph = scipy.sparse.lil_matrix(
                 #     (X[index].shape[0], X[index].shape[0]), dtype=np.int8
                 # )
@@ -3490,8 +3490,13 @@ class JUMAP(JUMAPBASE):
                 if it == 0:
                     scaleOBJ = 0.1*np.max(obj_vec) # use this to scale the objective function
                 obj_vec = obj_vec/(0.001+ scaleOBJ)
+
                 alpha = np.exp(-obj_vec/ld - 1)
                 alpha = alpha/np.sum(alpha)
+
+                alpha_np = np.array(alpha)
+                self.obj_value = np.inner(obj_vec, alpha_np) + ld * np.inner(alpha_np, np.log(alpha_np))
+                # print(self.obj_value)
                 self.init = self.embedding_
                 # print(alpha)
             self.alpha = alpha

@@ -1441,6 +1441,10 @@ class JTSNE(JTSNEBASE):
             for it in range(max_iter):
                 # start_ = time()
                 embedding = self._fit(X, alpha)
+                entropies = np.array(self.cross_entropy)
+                alpha_np = np.array(alpha)
+                self.obj_value = np.inner(entropies, alpha_np) + _lambda * np.inner(alpha_np, np.log(alpha_np))
+                # print(self.obj_value)
                 # print("Total time = ", time() - start_)
                 entropies = np.array(self.cross_entropy)
                 self.init = embedding

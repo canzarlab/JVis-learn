@@ -15,7 +15,7 @@ def readme():
 
 configuration = {
     "name": "Jvis-learn",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "description": "A generalization of t-SNE and UMAP to single-cell multimodal omics",
     "long_description": readme(),
     "long_description_content_type": "text/x-rst",
@@ -44,7 +44,7 @@ configuration = {
     "packages": ["Jvis"],
     "install_requires": [
         "numpy >= 1.17",
-        "scikit-learn >= 0.20",
+        "scikit-learn >= 0.20,<= 0.24.1",
         "scipy >= 1.3.1",
         "numba >= 0.46, != 0.47",
     ],
