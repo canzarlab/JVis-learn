@@ -7,10 +7,9 @@ Jvis
 Emerging single-cell technologies profile multiple types of molecules within individual cells. A fundamental step in the analysis of the produced high-dimensional data is their visualization using dimensionality reduction techniques such as t-SNE and UMAP. We introduce j-SNE and j-UMAP as their natural generalizations to the joint visualization of multimodal omics data. Our approach automatically learns the relative contribution of each modality to a concise representation of cellular identity that promotes discriminative features but suppresses noise. On eight datasets, j-SNE and j-UMAP produce unified embeddings that better agree with known cell types and that harmonize RNA and protein velocity landscapes. j-SNE and j-UMAP are available in the JVis Python package.
 
 The details for the underlying mathematics can be found in
-https://www.biorxiv.org/content/10.1101/2021.01.10.426098v1.
+https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02356-5.
 
-Van Hoan Do, Stefan Canzar, A generalization of t-SNE and UMAP to single-cell multimodal omics, 
-bioRxiv (2021). doi: https://doi.org/10.1101/2021.01.10.426098
+Van Hoan Do, Stefan Canzar, A generalization of t-SNE and UMAP to single-cell multimodal omics. Genome Biol. 2021;22(1):130. doi:10.1186/s13059-021-02356-5
 
 
 ----------
