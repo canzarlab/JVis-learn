@@ -21,7 +21,7 @@ Requirements:
 * Python 3.6 or greater
 * numpy
 * scipy
-* scikit-learn
+* scikit-learn >= 0.23.0
 * numba
 
 
@@ -88,6 +88,13 @@ The JVis package is 3-clause BSD licensed.
 
 Jvis package is inherited from scikit-learn and UMAP
 package under 3-clause BSD license.
+
+This code has been tested on 
+Python 3.6, 3.7
+scikit-learn version 0.24.1
+numpy version 1.19.2 
+scipy version 1.5.3 
+numba version 0.52.0
 
 
 
