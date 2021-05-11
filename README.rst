@@ -9,7 +9,7 @@ Emerging single-cell technologies profile multiple types of molecules within ind
 The details for the underlying mathematics can be found in
 https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02356-5.
 
-Van Hoan Do, Stefan Canzar, A generalization of t-SNE and UMAP to single-cell multimodal omics. Genome Biol. 2021;22(1):130. doi:10.1186/s13059-021-02356-5
+Van Hoan Do and Stefan Canzar. A generalization of t-SNE and UMAP to single-cell multimodal omics. Genome Biology. 2021;22(1):130. doi:10.1186/s13059-021-02356-5
 
 
 ----------
