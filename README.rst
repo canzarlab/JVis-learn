@@ -90,9 +90,8 @@ Jvis package is inherited from scikit-learn and UMAP
 package under 3-clause BSD license.
 
 This code was tested on 
-Python 3.6, 3.7 
-
-scikit-learn version 0.24.1
+| Python 3.6, 3.7 
+| scikit-learn version 0.24.1
 
 numpy version 1.19.2 
 
