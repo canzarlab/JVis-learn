@@ -79,6 +79,11 @@ https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
 
 https://umap-learn.readthedocs.io/en/latest/api.html
 
+---------------
+FAQ
+---------------
+1/ How to print the weight of modalities?
+https://github.com/canzarlab/JVis-learn/issues/3
 
 -------
 License
